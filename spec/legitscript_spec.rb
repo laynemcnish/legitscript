@@ -29,4 +29,8 @@ describe LegitScript do
   it "new method should return the values with duplicates when given an array with duplicated values" do
     expect(@array.return_duplicated_values([1,1,2,2,3,3,4,5,6])).to eq([1,2,3])
   end
+
+  it "new method should return the values with duplicates when given an array with duplicated values that are not in order" do
+    expect(@array.return_duplicated_values([1,2,3,3,4,1,5,6,2])).to eq([1,2,3])
+  end
 end
