@@ -23,3 +23,27 @@ To improve the given function, I broke it down into a few steps:
 * Next, I rewrote the function into a more explicit method
 * Finally, I split my new method into two methods so that each would only be responsible for one thing.  The first method counts the duplicates and the second method returns the duplicated values.
 * Throughout my refactoring, I ran my tests and consulted the results to make sure that with every change I made, I still have functioning methods.
+
+## New Methods
+
+```
+  def count_duplicates(input_array)
+    items_count = Hash.new(0)
+    input_array.each do |item|
+      items_count[item] += 1
+    end
+    items_count
+  end
+
+  def return_duplicated_values(input_array)
+    duplicated_values =[]
+    duplicate_count = count_duplicates(input_array)
+
+    duplicate_count.each do |key, value|
+      if value > 1
+        duplicated_values.push(key)
+      end
+    end
+    duplicated_values
+  end
+```  
