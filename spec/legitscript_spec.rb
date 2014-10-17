@@ -1,0 +1,4 @@
+describe LegitScript do
+
+
+end
