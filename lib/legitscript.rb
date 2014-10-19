@@ -13,7 +13,7 @@ class LegitScript
   def count_duplicates(input_array)
     items_count = Hash.new(0)
     input_array.each do |item|
-     items_count[item] += 1
+      items_count[item] += 1
     end
     items_count
   end
@@ -30,13 +30,23 @@ class LegitScript
     duplicated_values
   end
 
+  def benchmark_function
+    output = File.open( "/Users/laynemcnish/gSchoolWork/Scratch/legitscript/bin/function_benchmarks.txt","w" )
+    (1000..100000).step(1000).each do |i|
+      a = (0..i).collect { rand(10000) }
+      b = (0..i).collect { rand(10000) }
+      c = a + b
+      func_time = Benchmark.realtime do
+        LegitScript.new.function(c)
+      end
+      output << "#{c.length}\t#{func_time}\n"
+    end
+    output.close
+  end
 end
 
-a = (0..100).collect{ rand(1000000000000000) }
-b = (0..100).collect{ rand(1000000000000000) }
-c = a + b
+LegitScript.new.benchmark_function
 
-Benchmark.bmbm do |x|
-  x.report("function") { LegitScript.new.function(c) }
-  x.report("my method")  { LegitScript.new.return_duplicated_values(c)  }
-end
+
+
+
